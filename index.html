@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style type="text/css">
+      html, body, #map-canvas { height: 100%; margin: 0; padding: 0;}
+    </style>
+    <script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJNP9nDGwDeDrj7gjZRH97LwbgXEDC7Fo">
+    </script>
+    
+  </head>
+  <body>
+    <div id="logo" style="width: 200px; height: 90px; margin:0 auto;">
+    <img src="images/mevislogo.png">
+    </div>
+<div id="map-canvas" style="width: 960px; height:600px; margin:0 auto;"></div>
+  </body>
+
+  <script type="text/javascript">
+      function initialize() {
+        var mapOptions = {
+          center: { lat: 40.5383482, lng: -7.2661315},
+          zoom: 8,
+        };
+
+        var map = new google.maps.Map(document.getElementById('map-canvas'),
+            mapOptions);
+
+        var contentString = '<div id="content">'+
+          '<div id="siteNotice">'+
+          '</div>'+
+          '<h1 id="firstHeading" class="firstHeading">Guarda</h1>'+
+          '<div id="bodyContent">'+
+          '<h2>Fontes Seguros</h2>'+
+          '<p>Telef. 271 215 118</p>'+
+          '<p>Fax 271 214 575</p>'+
+          '<p>Email geral@fontesseguros.com</p>'+
+          '<p>Rua Dr. Francisco Pissarra de Matos</p>'+
+          '<p>1 R/C Dto</p>'+
+          '<p>6300-693 Guarda</p>'+
+          '</div>'+
+          '</div>';
+ 
+          var infowindow = new google.maps.InfoWindow({
+          content: contentString
+          });
+
+
+          var contentString2 = '<div id="content">'+
+          '<div id="siteNotice">'+
+          '</div>'+
+          '<h1 id="firstHeading" class="firstHeading">Castelo Branco</h1>'+
+          '<div id="bodyContent">'+
+          '<p>Pedro Agapito</p>'+
+          '</div>'+
+          '</div>';
+ 
+          var infowindow2 = new google.maps.InfoWindow({
+          content: contentString2
+          });
+
+        var marker = new google.maps.Marker({
+            position: { lat: 40.5383482, lng: -7.2661315},
+            icon: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png',
+            title: 'Guarda',
+        });
+        var marker2 = new google.maps.Marker({
+            position: { lat: 39.8197117, lng: -7.4964662},
+            icon: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png',
+            title: 'Castelo Branco',
+        });
+
+        marker.setMap(map);
+        marker2.setMap(map);
+
+        
+    google.maps.event.addListener(marker, 'click', function() {
+      infowindow.open(map,marker);
+    });
+
+    google.maps.event.addListener(marker2, 'click', function() {
+      infowindow2.open(map,marker2);
+    });
+
+    }
+
+      google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+</html>
